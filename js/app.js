@@ -48,15 +48,27 @@ var Player = function(x,y) {
 // Parameter: dt, a time delta between ticks
 Player.prototype.update = function() {
     // Updates the Player location
-    this.x;
-    this.y;
+    this.x = this.x;
+    this.y = this.y;
     // Handles collision with the Enemy
 
 };
 
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    if(this.x >= document.querySelector('canvas').width-100 || this.y >= document.querySelector('canvas').height-200){
+        console.log("Out of bounds > canvas");
+        this.x = 200;
+        this.y = 383;
+    }
+    else if(this.x < 0 || this.y < 0){
+        console.log("Out of bounds < 0");
+        this.x = 200;
+        this.y = 383;
+    }
+    else{
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
 };
 
 // Receives user input, allowedKeys (the key which was pressed) and move the player according to that input
@@ -82,10 +94,8 @@ Player.prototype.handleInput = function(input) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [new Enemy(5,2,10),new Enemy(6,100,20),new Enemy(6,200,20),new Enemy(-6,200,20,new Enemy(-10,200,20))];
-var player = new Player(100,300);
-console.log(player.x+" "+player.y);
-
+var allEnemies = [new Enemy(5,2,10),new Enemy(6,100,20),new Enemy(6,200,20),new Enemy(-60,150,20)];
+var player = new Player(200,383)
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
