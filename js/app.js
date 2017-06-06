@@ -19,14 +19,21 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     // Updates the Enemy location
     this.x += dt*this.speed;
-    // Handles collision with the Player
-
-
+    // Handles collision
+    if (this.x === player.y && this.y === player.y){
+        console.log("TRUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        return true;
+    }
+    else{
+        console.log("FALSE");
+        return false;
+    }
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
 };
 
 // Now write your own Player class
@@ -36,9 +43,10 @@ Enemy.prototype.render = function() {
 var Player = function(x,y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
-    //Setting the Player initial location
+    //Setting the Player initial location and number of lives
     this.x = x;
     this.y = y;
+    this.life = 3;
     // The image/sprite for our players, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/char-boy.png';
@@ -47,10 +55,8 @@ var Player = function(x,y) {
 // Update the players's position, required method for game
 // Parameter: dt, a time delta between ticks
 Player.prototype.update = function() {
+    // console.log("UPDATE P");
     // Updates the Player location
-    this.x = this.x;
-    this.y = this.y;
-    // Handles collision with the Enemy
 
 };
 
@@ -91,12 +97,6 @@ Player.prototype.handleInput = function(input) {
     }
 };
 
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-var allEnemies = [new Enemy(5,2,10),new Enemy(6,100,20),new Enemy(6,200,20),new Enemy(-60,150,20)];
-var player = new Player(200,383)
-
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -109,3 +109,53 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+// Game Session in order to control game stats,levels and score
+var GameSession = function() {
+    // Variables applied to each of our instances go here,
+    // Setting the Enemy initial location and speed
+    this.score = 0;
+    this.level = 0;
+    // The image/sprite for our enemies, this uses
+    // a helper we've provided to easily load images
+    this.sprite = 'images/enemy-bug.png';
+};
+
+// Start and reset the game session
+// Instantiate Enemy and Player objects.
+// Place all enemy objects in an array called allEnemies
+// Place the player object in a variable called player
+// Parameter: dt, a time delta between ticks
+GameSession.prototype.starts = function() {
+    //  Starts the game session
+    // var allEnemies = [new Enemy(1,60,1),new Enemy(1,145,2),new Enemy(1,225,2),new Enemy(1,310,2)];
+    var allEnemies = [new Enemy(1,100,1),new Enemy(1,200,2),new Enemy(1,300,2),new Enemy(1,400,2)];
+    var player = new Player(200,383);
+    let returnArray = [allEnemies,player];
+    return returnArray;
+
+};
+
+// Handles Enemy X Player collision
+GameSession.prototype.collision = (enemy,player) => {
+    console.log(enemy);
+    enemy.forEach((element) => {
+        if (element.x === player.y && element.y === player.y){
+            console.log("TRUE");
+            return true;
+        }
+        else{
+            console.log("FALSE");
+            return false;
+        }
+    });
+};
+
+// Instantiate Game Session object
+var gameSession = new GameSession();
+var startsReturn = gameSession.starts();
+var allEnemies = startsReturn[0];
+var player = startsReturn[1];
+
+
+
