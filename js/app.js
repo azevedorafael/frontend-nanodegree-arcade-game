@@ -20,20 +20,12 @@ Enemy.prototype.update = function(dt) {
     // Updates the Enemy location
     this.x += dt*this.speed;
     // Handles collision
-    if (this.x === player.y && this.y === player.y){
-        console.log("TRUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-        return true;
-    }
-    else{
-        console.log("FALSE");
-        return false;
-    }
+    console.log(this.x+" "+this.y);
 };
 
 // Draw the enemy on the screen, required method for game
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
 };
 
 // Now write your own Player class
@@ -46,7 +38,7 @@ var Player = function(x,y) {
     //Setting the Player initial location and number of lives
     this.x = x;
     this.y = y;
-    this.life = 3;
+    this.lives = 3;
     // The image/sprite for our players, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/char-boy.png';
@@ -55,25 +47,30 @@ var Player = function(x,y) {
 // Update the players's position, required method for game
 // Parameter: dt, a time delta between ticks
 Player.prototype.update = function() {
-    // console.log("UPDATE P");
+    // console.log("UPDATE Player log");
     // Updates the Player location
-
+    console.log(this.x+" "+this.y);
 };
 
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function() {
     if(this.x >= document.querySelector('canvas').width-100 || this.y >= document.querySelector('canvas').height-200){
         console.log("Out of bounds > canvas");
-        this.x = 200;
-        this.y = 383;
+        this.x = 300;
+        this.y = 380;
+        alert("Caiuuuu!");
+        return false;
     }
     else if(this.x < 0 || this.y < 0){
         console.log("Out of bounds < 0");
-        this.x = 200;
-        this.y = 383;
+        this.x = 300;
+        this.y = 380;
+        alert("Caiuuuuuuuu");
+        return false;
     }
     else{
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        return true;
     }
 };
 
@@ -115,10 +112,7 @@ var GameSession = function() {
     // Variables applied to each of our instances go here,
     // Setting the Enemy initial location and speed
     this.score = 0;
-    this.level = 0;
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+    this.level = 1;
 };
 
 // Start and reset the game session
@@ -129,26 +123,15 @@ var GameSession = function() {
 GameSession.prototype.starts = function() {
     //  Starts the game session
     // var allEnemies = [new Enemy(1,60,1),new Enemy(1,145,2),new Enemy(1,225,2),new Enemy(1,310,2)];
-    var allEnemies = [new Enemy(1,100,1),new Enemy(1,200,2),new Enemy(1,300,2),new Enemy(1,400,2)];
-    var player = new Player(200,383);
+    var allEnemies = [new Enemy(0,60,5),new Enemy(0,140,1),new Enemy(0,220,1),new Enemy(0,300,100)];
+    var player = new Player(300,380);
+    //width range  270 -300- 345
+    //height range 350 -380- 425
+    // L R = x = 100
+    // U D = y = 80
     let returnArray = [allEnemies,player];
     return returnArray;
 
-};
-
-// Handles Enemy X Player collision
-GameSession.prototype.collision = (enemy,player) => {
-    console.log(enemy);
-    enemy.forEach((element) => {
-        if (element.x === player.y && element.y === player.y){
-            console.log("TRUE");
-            return true;
-        }
-        else{
-            console.log("FALSE");
-            return false;
-        }
-    });
 };
 
 // Instantiate Game Session object

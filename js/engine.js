@@ -64,7 +64,7 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        reset();
+        //res();
         lastTime = Date.now();
         main();
     }
@@ -80,7 +80,23 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
+    }
+
+    function checkCollisions() {
+    //width range  270 -300- 345
+    //height range 350 -380- 400
+    // L R = x = 100
+    // U D = y = 80
+        allEnemies.forEach((enemy) => {
+            if (enemy.y === player.y){
+                console.log("Y COLLIDING!");
+                if (enemy.x >= player.x-80 && enemy.x <= player.x+80  ){
+                    console.log(" X COLLIDING!");
+                    res();
+                }
+            }
+        });
     }
 
     /* This is called by the update function and loops through all of the
@@ -133,6 +149,7 @@ var Engine = (function(global) {
                  * we're using them over and over.
                  */
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+
             }
         }
 
@@ -151,15 +168,27 @@ var Engine = (function(global) {
             enemy.render();
         });
 
-        player.render();
+        if(!player.render()){
+            res();
+        }
     }
 
     /* This function does nothing but it could have been a good place to
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
-    function reset() {
-        // noop
+    var res = function reset(){
+        console.log("RESEEEEEEEEEEEEEEEEEEEEEEEEEEEEETTTTTTTTTTING");
+        alert("GAME OVERR!");
+        gameSession,
+        startsReturn,
+        allEnemies,
+        player = null;
+        console.log(gameSession);
+        gameSession = new GameSession();
+        startsReturn = gameSession.starts();
+        allEnemies = startsReturn[0];
+        player = startsReturn[1];
     }
 
     /* Go ahead and load all of the images we know we're going to need to
