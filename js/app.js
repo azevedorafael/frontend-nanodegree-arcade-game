@@ -11,7 +11,7 @@ var Enemy = function(x,y,speed) {
     positionYArray = _shuffle(posistionYArray);
     this.x = positionXArray[0];
     this.y = positionYArray[0];
-    this.speed = Math.floor((Math.random() * 100) - 50);;
+    this.speed = Math.floor((Math.random() * 100) - 50);
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     if(this.speed < 0){
@@ -45,30 +45,34 @@ var Player = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     //Setting the Player initial location and number of lives
-    // this.x = x;
-    // this.y = y;
     let positionXArray = [0,100,200,300,400,500];
     positionXArray = _shuffle(positionXArray);
     this.x = positionXArray[0];
     this.y = 380;
 
-                        // var Player = function(x,y) {
-                        //     // Variables applied to each of our instances go here,
-                        //     // we've provided one for you to get started
-                        //     //Setting the Player initial location and number of lives
-                        //     this.x = x;
-                        //     this.y = y;
-                        //     let positionXArray = [0,100,200,400,500,600,700];
-                        //     positionXArray = _shuffle(positionXArray);
-                        //     positionYArray = _shuffle(posistionYArray);
-                        //     this.x = positionXArray[0];
-                        //     this.y = positionYArray[0];
-
-
-
     // The image/sprite for our players, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/char-boy.png';
+    let randomSprite = Math.floor((Math.random() * 5) +1);
+    switch (randomSprite) {
+    case 1:
+        this.sprite = 'images/char-boy.png';
+        break;
+    case 2:
+        this.sprite = 'images/char-cat-girl.png';
+        break;
+    case 3:
+        this.sprite = 'images/char-horn-girl.png';
+        break;
+    case 4:
+        this.sprite = 'images/char-pink-girl.png';
+        break;
+    case 5:
+        this.sprite = 'images/char-princess-girl.png';
+        break;
+    default:
+        this.sprite = 'images/char-boy.png';
+        break;
+    }
 };
 
 // Update the players's position, required method for game
@@ -80,13 +84,11 @@ Player.prototype.update = function() {
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function() {
     if(this.x >= document.querySelector('canvas').width-100 || this.y >= document.querySelector('canvas').height-200){
-        console.log("Out of bounds > canvas");
-        alert("Caiuuuu!");
+        alert("Out of game bounds!");
         return false;
     }
     else if(this.x < 0 || this.y < 0){
-        console.log("Out of bounds < 0");
-        alert("Caiuuuuuuuu");
+        alert("You Felt!");
         return false;
     }
     else{
@@ -137,8 +139,7 @@ var Item = function() {
     let posistionYArray = [60,140]
     positionXArray = _shuffle(positionXArray);
     positionYArray = _shuffle(posistionYArray);
-    // console.log(positionXArray);
-    // console.log(positionYArray);
+
     this.x = positionXArray[0];
     this.y = positionYArray[0];
     // The image/sprite for our players, this uses
@@ -172,20 +173,7 @@ Item.prototype.update = function() {
 
 // Draw the enemy on the screen, required method for game
 Item.prototype.render = function() {
-    // if(this.x >= document.querySelector('canvas').width-100 || this.y >= document.querySelector('canvas').height-200){
-    //     console.log("Out of bounds > canvas");
-    //     alert("Caiuuuu!");
-    //     return false;
-    // }
-    // else if(this.x < 0 || this.y < 0){
-    //     console.log("Out of bounds < 0");
-    //     alert("Caiuuuuuuuu");
-    //     return false;
-    // }
-    // else{
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    //     return true;
-    // }
 };
 
 // Game Session in order to control game stats,levels and score

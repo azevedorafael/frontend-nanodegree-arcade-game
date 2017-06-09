@@ -47,7 +47,7 @@ var Engine = (function(global) {
          */
         update(dt);
         render();
-
+        
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -87,21 +87,17 @@ var Engine = (function(global) {
     //Checks enemy X player collisions
         allEnemies.forEach((enemy) => {
             if (enemy.y === player.y){
-                console.log("Y COLLIDING!");
                 if (enemy.x >= player.x-80 && enemy.x <= player.x+80  ){
-                    console.log(" X COLLIDING!");
                     res();
                 }
             }
         });
-    
+
     //Checks player X item collisions
         if (player.y === item.y){
-            console.log("ITEM Y COLLIDING");
             if( player.x === item.x){
-                renderEntities();
-                alert("GANHOUUUUUUUUU");
-                res();
+                alert("YOU WIN!");
+                resWin();
             }
         }
 }
@@ -175,7 +171,6 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-        console.log(player.x+" "+player.y);
         if(!player.render()){
             res();
         }
@@ -188,8 +183,20 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     var res = function reset(){
-        console.log("RESEEEEEEEEEEEEEEEEEEEEEEEEEEEEETTTTTTTTTTING");
-        alert("GAME OVERR!");
+        alert("GAME OVER!");
+        gameSession,
+        startsReturn,
+        allEnemies,
+        player = null;
+        item = null;
+        gameSession = new GameSession();
+        startsReturn = gameSession.starts();
+        allEnemies = startsReturn[0];
+        player = startsReturn[1];
+        item = startsReturn[2];
+    }
+
+        var resWin = function reset(){
         gameSession,
         startsReturn,
         allEnemies,
