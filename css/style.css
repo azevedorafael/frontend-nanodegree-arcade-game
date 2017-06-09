@@ -2,6 +2,8 @@ body {
     font-family: "Press Start 2P", "cursive";
     text-align: center;
     color: black;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 h1 {
