@@ -84,10 +84,7 @@ var Engine = (function(global) {
     }
 
     function checkCollisions() {
-    //width range  270 -300- 345
-    //height range 350 -380- 400
-    // L R = x = 100
-    // U D = y = 80
+    //Checks enemy X player collisions
         allEnemies.forEach((enemy) => {
             if (enemy.y === player.y){
                 console.log("Y COLLIDING!");
@@ -97,7 +94,17 @@ var Engine = (function(global) {
                 }
             }
         });
-    }
+    
+    //Checks player X item collisions
+        if (player.y === item.y){
+            console.log("ITEM Y COLLIDING");
+            if( player.x === item.x){
+                renderEntities();
+                alert("GANHOUUUUUUUUU");
+                res();
+            }
+        }
+}
 
     /* This is called by the update function and loops through all of the
      * objects within your allEnemies array as defined in app.js and calls
@@ -111,6 +118,7 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+        item.update();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -167,10 +175,12 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
-
+        console.log(player.x+" "+player.y);
         if(!player.render()){
             res();
         }
+
+        item.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -184,11 +194,12 @@ var Engine = (function(global) {
         startsReturn,
         allEnemies,
         player = null;
-        console.log(gameSession);
+        item = null;
         gameSession = new GameSession();
         startsReturn = gameSession.starts();
         allEnemies = startsReturn[0];
         player = startsReturn[1];
+        item = startsReturn[2];
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -200,7 +211,22 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/enemy-bug-reverse.png',
+        'images/char-boy.png',
+        'images/char-cat-girl.png',
+        'images/char-horn-girl.png',
+        'images/char-pink-girl.png',
+        'images/char-princess-girl.png',
+        'images/Gem Blue.png',
+        'images/Gem Green.png',
+        'images/Gem Orange.png',
+        'images/Heart.png',
+        'images/Key.png',
+        'images/Rock.png',
+        'images/Selector.png',
+        'images/Star.png',
+        'images/stone-block.png',
+        'images/water-block.png'
     ]);
     Resources.onReady(init);
 

@@ -5,10 +5,21 @@ var Enemy = function(x,y,speed) {
     // Setting the Enemy initial location and speed
     this.x = x;
     this.y = y;
-    this.speed = speed;
+    let positionXArray = [0,100,200,400,500,600,700];
+    let posistionYArray = [60,140,220,300]
+    positionXArray = _shuffle(positionXArray);
+    positionYArray = _shuffle(posistionYArray);
+    this.x = positionXArray[0];
+    this.y = positionYArray[0];
+    this.speed = Math.floor((Math.random() * 100) - 50);;
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+    if(this.speed < 0){
+        this.sprite = 'images/enemy-bug-reverse.png'
+    }
+    else{
+        this.sprite = 'images/enemy-bug.png';
+    }
 };
 
 // Update the enemy's position, required method for game
@@ -19,8 +30,6 @@ Enemy.prototype.update = function(dt) {
     // all computers.
     // Updates the Enemy location
     this.x += dt*this.speed;
-    // Handles collision
-    console.log(this.x+" "+this.y);
 };
 
 // Draw the enemy on the screen, required method for game
@@ -32,13 +41,31 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 // The Player class
-var Player = function(x,y) {
+var Player = function() {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
     //Setting the Player initial location and number of lives
-    this.x = x;
-    this.y = y;
-    this.lives = 3;
+    // this.x = x;
+    // this.y = y;
+    let positionXArray = [0,100,200,300,400,500];
+    positionXArray = _shuffle(positionXArray);
+    this.x = positionXArray[0];
+    this.y = 380;
+
+                        // var Player = function(x,y) {
+                        //     // Variables applied to each of our instances go here,
+                        //     // we've provided one for you to get started
+                        //     //Setting the Player initial location and number of lives
+                        //     this.x = x;
+                        //     this.y = y;
+                        //     let positionXArray = [0,100,200,400,500,600,700];
+                        //     positionXArray = _shuffle(positionXArray);
+                        //     positionYArray = _shuffle(posistionYArray);
+                        //     this.x = positionXArray[0];
+                        //     this.y = positionYArray[0];
+
+
+
     // The image/sprite for our players, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/char-boy.png';
@@ -47,24 +74,18 @@ var Player = function(x,y) {
 // Update the players's position, required method for game
 // Parameter: dt, a time delta between ticks
 Player.prototype.update = function() {
-    // console.log("UPDATE Player log");
     // Updates the Player location
-    console.log(this.x+" "+this.y);
 };
 
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function() {
     if(this.x >= document.querySelector('canvas').width-100 || this.y >= document.querySelector('canvas').height-200){
         console.log("Out of bounds > canvas");
-        this.x = 300;
-        this.y = 380;
         alert("Caiuuuu!");
         return false;
     }
     else if(this.x < 0 || this.y < 0){
         console.log("Out of bounds < 0");
-        this.x = 300;
-        this.y = 380;
         alert("Caiuuuuuuuu");
         return false;
     }
@@ -107,6 +128,66 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+// The Item class
+// This class requires an update() and render()
+var Item = function() {
+    // Variables applied to each of our instances go here,
+    //Setting the Item initial location
+    let positionXArray = [0,100,200,400,500];
+    let posistionYArray = [60,140]
+    positionXArray = _shuffle(positionXArray);
+    positionYArray = _shuffle(posistionYArray);
+    // console.log(positionXArray);
+    // console.log(positionYArray);
+    this.x = positionXArray[0];
+    this.y = positionYArray[0];
+    // The image/sprite for our players, this uses
+    // a helper we've provided to easily load images
+    let spriteArray = ['images/Gem Blue.png',
+                        'images/Gem Green.png',
+                        'images/Gem Orange.png',
+                        'images/Star.png',
+                        'images/Key.png'];
+    this.sprite = spriteArray[Math.floor(Math.random()*spriteArray.length)];
+};
+
+function _shuffle(array) {
+    var currentIndex = array.length, tempValue, randomIndex;
+
+    while (0 !== currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        tempValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = tempValue;
+    }
+    return array;
+}
+
+// Update the players's position, required method for game
+// Parameter: dt, a time delta between ticks
+Item.prototype.update = function() {
+    // Updates the Player location
+};
+
+// Draw the enemy on the screen, required method for game
+Item.prototype.render = function() {
+    // if(this.x >= document.querySelector('canvas').width-100 || this.y >= document.querySelector('canvas').height-200){
+    //     console.log("Out of bounds > canvas");
+    //     alert("Caiuuuu!");
+    //     return false;
+    // }
+    // else if(this.x < 0 || this.y < 0){
+    //     console.log("Out of bounds < 0");
+    //     alert("Caiuuuuuuuu");
+    //     return false;
+    // }
+    // else{
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    //     return true;
+    // }
+};
+
 // Game Session in order to control game stats,levels and score
 var GameSession = function() {
     // Variables applied to each of our instances go here,
@@ -123,15 +204,20 @@ var GameSession = function() {
 GameSession.prototype.starts = function() {
     //  Starts the game session
     // var allEnemies = [new Enemy(1,60,1),new Enemy(1,145,2),new Enemy(1,225,2),new Enemy(1,310,2)];
-    var allEnemies = [new Enemy(0,60,5),new Enemy(0,140,1),new Enemy(0,220,1),new Enemy(0,300,100)];
-    var player = new Player(300,380);
+    var allEnemies = [new Enemy()];
+    let random = Math.floor((Math.random() * 10) + 1);
+    for (let x = 0;x <= random; x++){
+        allEnemies.push(new Enemy());
+    }
+
+    var player = new Player();
+    var item = new Item();
     //width range  270 -300- 345
     //height range 350 -380- 425
     // L R = x = 100
     // U D = y = 80
-    let returnArray = [allEnemies,player];
+    let returnArray = [allEnemies,player,item];
     return returnArray;
-
 };
 
 // Instantiate Game Session object
@@ -139,6 +225,8 @@ var gameSession = new GameSession();
 var startsReturn = gameSession.starts();
 var allEnemies = startsReturn[0];
 var player = startsReturn[1];
+var item = startsReturn[2];
+
 
 
 
