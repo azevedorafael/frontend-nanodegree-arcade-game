@@ -88,7 +88,7 @@ Player.prototype.render = function() {
         return false;
     }
     else if(this.x < 0 || this.y < 0){
-        alert("You Felt!");
+         alert("Out of game bounds!");
         return false;
     }
     else{
