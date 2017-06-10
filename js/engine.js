@@ -127,7 +127,7 @@ var Engine = (function (global) {
             player.x += 100;
             break;
         case 4:
-            player.y += 80;
+            player.y +=80;
             break;
         default:
             player.x = player.x;

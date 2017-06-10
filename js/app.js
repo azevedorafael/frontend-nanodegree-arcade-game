@@ -83,7 +83,7 @@ Player.prototype.update = function () {
     else if (this.y > 380){
         return 2;
     }
-    else if (this.x < 0){
+    else if(this.x < 0){
         return 3;
     }
     else if (this.y === item.y) {
