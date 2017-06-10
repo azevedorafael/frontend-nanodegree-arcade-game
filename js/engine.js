@@ -171,11 +171,14 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
+        // if(!player.render()){
+        //     res();
+        // }
         if(!player.render()){
             res();
         }
-
         item.render();
+
     }
 
     /* This function does nothing but it could have been a good place to
