@@ -1,6 +1,56 @@
-frontend-nanodegree-arcade-game
-===============================
+# Frogger (Clone) : The Bug Runner !
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+This is the source code for the [Udacity's](https://udacity.com/) game project using Javascript, for a lesson conclusion.
+[PLAY THE GAME](file:///C:/Udacity/version-control/frontend-nanodegree-arcade-game/index.html)
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## How to Run and Contribute
+
+First, fork this repository.
+
+![Fork Icon](images/fork-icon.png)
+
+Next, clone this repository to your desktop to make changes.
+
+```sh
+$ git clone {YOUR_REPOSITORY_CLONE_URL}
+$ cd frontend-nanodegree-arcade-game
+```
+
+Once you've pushed changes to your local repository, you can issue a pull request by clicking on the green pull request icon.
+
+![Pull Request Icon](images/pull-request-icon.png)
+
+Instead of cloning the repository to your desktop, you can also go to your fork on GitHub.com, hit the Edit button (the button with the pencil) to edit the file in your browser, then hit the `Propose file change` button, and finally make a pull request.
+
+## How to Play
+
+Click in the link [PLAY THE GAME](file:///C:/Udacity/version-control/frontend-nanodegree-arcade-game/index.html)
+
+You will control one of the following characters:
+
+(images/char-boy.png) (images/char-cat-girl.png) (images/char-horn-girl.png) (images/char-pink-girl.png) (images/char-princess-girl.png)
+
+Use the **arrow keys** to move in the board, you can't go out of the game bounds!
+
+![Arrow Keys](images/arrow-keys.png)
+
+Your goal is to reach the **item** floating in the water, but be careful, you don't know hot to swim!
+
+![Key](images/Key.png) ![Gem Blue](images/Gem Blue.png) ![Gem Green](images/Gem Green.png) ![Gem Orange](images/Gem Orange.png) ![Star](images/Star.png)
+
+And don't forget to avoid the enemy **bugs**!
+
+![Bug](images/enemy-bug.png) ![Bug Reverse](images/enemy-bug-reverse.png)
+
+## Resources
+
+* **index.html** is the View for the game.
+* The **js** folder contains the game logic:
+        * **app.js** has the entity Models (Enemy, Player, Itens and Game Session);
+        * **engine.js** controls the main functions game (Controller);
+        * **resource.js** loads the images for the game, easing the process of loading;
+
+## License
+
+The contents of this repository are covered under the [MIT License](LICENSE).
+
