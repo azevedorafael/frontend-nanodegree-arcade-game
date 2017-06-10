@@ -29,7 +29,7 @@ Click in the link -> [PLAY THE GAME](https://azevedorafael.github.io/frontend-na
 
 You will control one of the following characters:
 
-(images/char-boy.png) (images/char-cat-girl.png) (images/char-horn-girl.png) (images/char-pink-girl.png) (images/char-princess-girl.png)
+![Char Boy](images/char-boy.png) ![Char Cat Girl](images/char-cat-girl.png) ![Char Horn Girl](images/char-horn-girl.png) ![Char Pink Girl](images/char-pink-girl.png) ![Char Princess](images/char-princess-girl.png)
 
 Use the **arrow keys** to move in the board, you can't go out of the game bounds!
 
@@ -47,11 +47,10 @@ And don't forget to avoid the enemy **bugs**!
 
 * **index.html** is the View for the game.
 * The **js** folder contains the game logic:
-        - **app.js** has the entity Models (Enemy, Player, Itens and Game Session);
-        - **engine.js** controls the main functions game (Controller);
-        - **resource.js** loads the images for the game, easing the process of loading;
+        <br>- **app.js** has the entity Models (Enemy, Player, Itens and Game Session);
+        <br>- **engine.js** controls the main functions game (Controller);
+        <br>- **resource.js** loads the images for the game, easing the process of loading;
 
 ## License
 
 The contents of this repository are covered under the [MIT License](LICENSE).
-
