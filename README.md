@@ -1,7 +1,8 @@
 # Frogger (Clone) : The Bug Runner !
 
 This is the source code for the [Udacity's](https://udacity.com/) game project using Javascript, for a lesson conclusion.
-[PLAY THE GAME](file:///C:/Udacity/version-control/frontend-nanodegree-arcade-game/index.html)
+
+[PLAY THE GAME](https://azevedorafael.github.io/frontend-nanodegree-arcade-game/)
 
 ## How to Run and Contribute
 
@@ -24,7 +25,7 @@ Instead of cloning the repository to your desktop, you can also go to your fork 
 
 ## How to Play
 
-Click in the link [PLAY THE GAME](file:///C:/Udacity/version-control/frontend-nanodegree-arcade-game/index.html)
+Click in the link -> [PLAY THE GAME](https://azevedorafael.github.io/frontend-nanodegree-arcade-game/)
 
 You will control one of the following characters:
 
@@ -36,7 +37,7 @@ Use the **arrow keys** to move in the board, you can't go out of the game bounds
 
 Your goal is to reach the **item** floating in the water, but be careful, you don't know hot to swim!
 
-![Key](images/Key.png) ![Gem Blue](images/Gem Blue.png) ![Gem Green](images/Gem Green.png) ![Gem Orange](images/Gem Orange.png) ![Star](images/Star.png)
+![Key](images/Key.png) ![Gem Blue](images/Gem-Blue.png) ![Gem Green](images/Gem-Green.png) ![Gem Orange](images/Gem-Orange.png) ![Star](images/Star.png)
 
 And don't forget to avoid the enemy **bugs**!
 
@@ -46,9 +47,9 @@ And don't forget to avoid the enemy **bugs**!
 
 * **index.html** is the View for the game.
 * The **js** folder contains the game logic:
-        * **app.js** has the entity Models (Enemy, Player, Itens and Game Session);
-        * **engine.js** controls the main functions game (Controller);
-        * **resource.js** loads the images for the game, easing the process of loading;
+        - **app.js** has the entity Models (Enemy, Player, Itens and Game Session);
+        - **engine.js** controls the main functions game (Controller);
+        - **resource.js** loads the images for the game, easing the process of loading;
 
 ## License
 

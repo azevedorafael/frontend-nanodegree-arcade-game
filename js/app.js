@@ -144,9 +144,9 @@ var Item = function () {
     this.y = -20;
     // The image/sprite for our items, this uses
     // a helper we've provided to easily load images
-    let spriteArray = ['images/Gem Blue.png',
-        'images/Gem Green.png',
-        'images/Gem Orange.png',
+    let spriteArray = ['images/Gem-Blue.png',
+        'images/Gem-Green.png',
+        'images/Gem-Orange.png',
         'images/Star.png',
         'images/Key.png'];
     this.sprite = spriteArray[Math.floor(Math.random() * spriteArray.length)];
