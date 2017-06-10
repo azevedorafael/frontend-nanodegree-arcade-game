@@ -35,7 +35,7 @@ Use the **arrow keys** to move in the board, you can't go out of the game bounds
 
 ![Arrow Keys](images/arrow-keys.png)
 
-Your goal is to reach the **item** floating in the water, but be careful, you don't know hot to swim!
+Your goal is to reach the **item** floating in the water, but be careful, you don't know how to swim!
 
 ![Key](images/Key.png) ![Gem Blue](images/Gem-Blue.png) ![Gem Green](images/Gem-Green.png) ![Gem Orange](images/Gem-Orange.png) ![Star](images/Star.png)
 
