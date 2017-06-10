@@ -83,13 +83,21 @@ Player.prototype.update = function() {
 
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function() {
-    if(this.x >= document.querySelector('canvas').width-100 || this.y >= document.querySelector('canvas').height-200){
+    if(this.x >= document.querySelector('canvas').width-100 || this.y >= document.querySelector('canvas').height-200 ){
         alert("Out of game bounds!");
         return false;
     }
-    else if(this.x < 0 || this.y < 0){
-         alert("Out of game bounds!");
+    else if (this.x < 0){
+        alert("Out of game bounds!");
         return false;
+    }
+    else if( this.y <= 0  ){
+        alert("Out of game bounds!");
+        return false;
+    }
+    else if( this.y === item.y  ){
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
+        return true;
     }
     else{
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -136,12 +144,10 @@ var Item = function() {
     // Variables applied to each of our instances go here,
     //Setting the Item initial location
     let positionXArray = [0,100,200,400,500];
-    let posistionYArray = [60,140]
     positionXArray = _shuffle(positionXArray);
-    positionYArray = _shuffle(posistionYArray);
 
     this.x = positionXArray[0];
-    this.y = positionYArray[0];
+    this.y = -20;
     // The image/sprite for our players, this uses
     // a helper we've provided to easily load images
     let spriteArray = ['images/Gem Blue.png',
