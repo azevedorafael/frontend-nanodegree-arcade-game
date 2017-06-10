@@ -115,8 +115,25 @@ var Engine = (function (global) {
         allEnemies.forEach(function (enemy) {
             enemy.update(dt);
         });
-        player.update();
-        item.update();
+    let upateOption = player.update();
+    switch (upateOption) {
+        case 1:
+            player.x -= 100;
+            break;
+        case 2:
+            player.y -= 80;
+            break;
+        case 3:
+            player.x += 100;
+            break;
+        case 4:
+            player.y += 80;
+            break;
+        default:
+            player.x = player.x;
+            player.y = player.y;
+            break;
+    }
     }
 
     /* This function initially draws the "game level", it will then call
@@ -174,10 +191,7 @@ var Engine = (function (global) {
             enemy.render();
         });
 
-        if (!player.render()) {
-            res();
-        }
-
+        player.render();
         item.render();
 
     }

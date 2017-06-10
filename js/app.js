@@ -77,26 +77,31 @@ var Player = function () {
 // Parameter: dt, a time delta between ticks
 Player.prototype.update = function () {
     // Updates the Player location
+    if (this.x >= document.querySelector('canvas').width - 100) {
+        return 1;
+    }
+    else if (this.y > 380){
+        return 2;
+    }
+    else if (this.x < 0){
+        return 3;
+    }
+    else if (this.y === item.y) {
+        if (this.x != item.x){
+            return 4;
+        }
+        else{
+            return 5;
+        }
+    }
+    else {
+        return 6;
+    }
 };
 
 // Draw the Player on the screen, required method for game
 Player.prototype.render = function () {
-    if (this.x >= document.querySelector('canvas').width - 100 || this.y >= document.querySelector('canvas').height - 200) {
-        alert("Out of game bounds!");
-        return false;
-    }
-    else if (this.x < 0 || this.y <= 0) {
-        alert("Out of game bounds!");
-        return false;
-    }
-    else if (this.y === item.y) {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
-        return true;
-    }
-    else {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-        return true;
-    }
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Receives user input, allowedKeys (the key which was pressed) and move the player according to that input
@@ -150,12 +155,6 @@ var Item = function () {
         'images/Star.png',
         'images/Key.png'];
     this.sprite = spriteArray[Math.floor(Math.random() * spriteArray.length)];
-};
-
-// Update the item's position, required method for game
-// Parameter: dt, a time delta between ticks
-Item.prototype.update = function () {
-    // Updates the Player location
 };
 
 // Draw the item on the screen, required method for game
