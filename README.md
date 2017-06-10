@@ -47,9 +47,9 @@ And don't forget to avoid the enemy **bugs**!
 
 * **index.html** is the View for the game.
 * The **js** folder contains the game logic:
-        - **app.js** has the entity Models (Enemy, Player, Itens and Game Session);
-        - **engine.js** controls the main functions game (Controller);
-        - **resource.js** loads the images for the game, easing the process of loading;
+        <br>- **app.js** has the entity Models (Enemy, Player, Itens and Game Session);
+        <br>- **engine.js** controls the main functions game (Controller);
+        <br>- **resource.js** loads the images for the game, easing the process of loading;
 
 ## License
 
